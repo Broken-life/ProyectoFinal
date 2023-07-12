@@ -1,4 +1,8 @@
+#entorno virtual
 venv/
+entorno/ 
+env/
+ENV/
 
 # Byte-compiled / optimized / DLL files
 *.pyc

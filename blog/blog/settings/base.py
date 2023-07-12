@@ -70,7 +70,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'blog.wsgi.application'
 
 
-# Database
+# DATABASE
 
 #CREAR un archivo llamado local.py en la carpeta settings y agregar el siguiente código:
 
