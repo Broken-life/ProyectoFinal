@@ -26,7 +26,7 @@ python manage.py migrate
 *** Para ejecutar el proyecto ***
 ```
 python manage.py runserver
-``
+```
 ***Recomendaciones***
 ```
 -Instalar en VSC la extension de GitHub Pull Requests and Issues (se maneja mejor el control de versiones)
