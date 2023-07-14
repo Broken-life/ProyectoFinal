@@ -1,3 +1,6 @@
 from django.shortcuts import render
+# Aca van las vistas de la app login (Basic Views - Function Based Views)
 
-# Create your views here.
+#ejemplo
+def index(request):
+    return render(request, 'login/index.html')

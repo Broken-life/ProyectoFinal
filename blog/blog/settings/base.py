@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -31,9 +30,11 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    #local apps
     'apps.post',
-    'apps.post',
+    'apps.login',
 
+    #Django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -73,15 +74,23 @@ TEMPLATES = [
 WSGI_APPLICATION = 'blog.wsgi.application'
 
 
-# DATABASE
+##### DATABASE #######
 
 #CREAR un archivo llamado local.py en la carpeta settings y agregar el siguiente código:
+# respetar el nombre de "local.py", ya que esta previamente configurado en el archivo settings.py y en el .gitignore :)
 
-# from .base import *
-#
+#   from .base import *
+
 # DATABASES = {
-#  *agregar datos de TU base de datos*
-# }
+#         'default': {
+#             'ENGINE': 'django.db.backends.mysql',
+#             'NAME': 'nombreDB', #nombre de SU base de datos creada en MySQL
+#             'USER': 'nombreusuario', #nombre de SU usuario creado en MySQL
+#             'PASSWORD': 'pass', #SU password de usuario para conectar a la DB
+#             'HOST': 'localhost',
+#             'PORT': '3306',
+#         }
+#     }
 
 
 # Password validation
@@ -118,8 +127,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS =(os.path.join(os.path.dirname(BASE_DIR),'static'),)
+STATIC_URL = 'staticfiles/'
+STATICFILES_DIRS =(os.path.join(os.path.dirname(BASE_DIR),'staticfiles'),)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

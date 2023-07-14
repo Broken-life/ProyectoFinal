@@ -1,3 +1,8 @@
 from django.shortcuts import render
 
-# Create your views here.
+# Aca van las vistas de la app post (Basic Views - Function Based Views)
+
+#ejemplo
+def index(request):
+    return render(request, 'post/index.html')
+
