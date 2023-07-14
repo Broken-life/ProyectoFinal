@@ -1,1 +1,0 @@
-#este archivo ta' de onda, es para que se suba la carpeta xd 
