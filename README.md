@@ -26,7 +26,7 @@ python manage.py migrate
 *** Para ejecutar el proyecto ***
 ```
 python manage.py runserver
-``
+```
 ***Recomendaciones***
 ```
 -Instalar en VSC la extension de GitHub Pull Requests and Issues (se maneja mejor el control de versiones)
@@ -34,5 +34,6 @@ python manage.py runserver
 -En caso de USAR OTRO NOMBRE PARA EL ENTORNO: AGREGARLO en el .GITIGNORE, mediante: nombredelentorno/
 -EVITAR subir archivos de db, pw, caché, etc. (agregarlos al .gitignore antes de hacer el commit)
 -EVITAR HACER PUSH A LA RAMA MAIN O DEVELOPMENT, SOLO HACERLO A LA RAMA STAGE.
--GRACIAS los quiero mucho <3
+-GRACIAS los quiero mucho ✨
+-Si no, hay tabla 😠
 ```
