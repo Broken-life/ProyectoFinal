@@ -1,10 +1,11 @@
 from django.contrib import admin
 from django.urls import path, include
+from .import views
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include("blog.urls")), #inicio de la pagina
-    path("login/", include("apps.login.urls")), #apartado de login
-    path("post/", include("apps.post.urls")), #apartado de post
+    path('', views.index, name='index'),
+    path('login/', include("apps.login.urls")),
+    path('post/', include("apps.post.urls")),
 ]
