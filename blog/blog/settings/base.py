@@ -33,6 +33,8 @@ INSTALLED_APPS = [
     #local apps
     'apps.post',
     'apps.login',
+    'blog',
+    
 
     #Django apps
     'django.contrib.admin',

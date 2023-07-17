@@ -40,7 +40,15 @@ class Post(models.Model):
         self.imagen.delete()
         super().delete(*args)
 
+class Articulo(models.Model):
+    titulo = models.CharField(max_length=200)
+    contenido = models.TextField()
+    fecha_publicacion = models.DateTimeField(auto_now_add=True)
+    autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.titulo
 
 class Comentario(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
@@ -59,3 +67,8 @@ class Comentario(models.Model):
     
     def delete(self, *args):
         super().delete(*args)
+        
+class User(models.Model):
+    nombre = models.CharField(max_length=200)
+    email = models.EmailField(max_length=200)
+            
