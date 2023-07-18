@@ -4,8 +4,8 @@
 {% block background %}{% load static %}{% static 'Bootstrap/img/portfolio-bg.jpg' %}{% endblock %}
 
 {% block headers %}
-<h1>About</h1>
-<span class="subheading">Nuestra Trayectoria</span>
+<h1 style="color: rgba(0, 0, 0, 0.699);">About</h1>
+<span class="subheading" style="color: rgba(0, 0, 0, 0.699);">Nuestra Trayectoria</span>
 {% endblock %}
 
 {% block content %}
@@ -18,9 +18,14 @@
             <div class="col-lg-7 col-md-8">
                 <h2 class="section-heading title">{{nosotros}}</h2>   
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic ut explicabo reiciendis quae dolorem rerum. Est eaque aliquid totam illo ducimus quas cupiditate alias assumenda perspiciatis minus? Vel, porro officiis?</p>
-                {% if project.link %}
-                    <p><a href="#">Accede a Youtube</a></p>
-                {% endif %}
+                <h4>Listado de nombres y correos</h4>
+                {% for usuario in usuarios %}
+                        <ol>
+                            <li>{{usuario.nombre}} </li>
+                            <li>{{usuario.email}}</li>
+                        </ol>
+                     
+                {% endfor %}
                 
             </div>
             <p>😎Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt beatae minus, aliquam modi voluptatibus consequatur illo dignissimos possimus eum deleniti, maiores, quam ab nisi nostrum laudantium sint consequuntur. Impedit, molestias!</p>

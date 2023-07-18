@@ -31,8 +31,16 @@ def contacto(request):
         "contacto":contacto,
     })
 
+# def about(request):
+#     nosotros = "esto es un grupo del informatorio formado en el año 2023"
+#     return render(request, "about.html",{
+#         "nosotros":nosotros,
+#     })
+
 def about(request):
-    nosotros = "esto es un grupo del informatorio formado en el año 2023"
+    usuarios = User.objects.all()
+    correos = User.objects.all()
     return render(request, "about.html",{
-        "nosotros":nosotros,
+        "usuarios":usuarios,
+        "correos":correos,
     })

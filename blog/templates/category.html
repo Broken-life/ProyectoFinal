@@ -4,8 +4,8 @@
 {% block background %}{% load static %}{% static 'Bootstrap/img/art-bg.jpg' %}{% endblock %}
 
 {% block headers %}
-<h1>Artículos</h1>
-<span class="subheading">los artículos se organizan en categorías</span>
+<h1 style="color: rgba(0, 0, 0, 0.699);">Artículos</h1>
+<span class="subheading" style="color: rgba(0, 0, 0, 0.899);">los artículos se organizan en categorías</span>
 {% endblock %}
 
 {% block content %}
@@ -25,13 +25,13 @@
         {% for titular in titulo %}
             
                
-            <h3>{{ titular.titulo }}</h3>
+            <h4>{{ titular.titulo }}</h4>
             
                        
             {% endfor %}
     
             {% else %}
-            <p>No existe titulo.</p>
+            <p>No existe titulo de la categoría.</p>
          {% endif %}
     </div>
 </div>
