@@ -15,8 +15,24 @@
     </div>
     <div class="col-lg-7 col-md-8">
         <h2 class="section-heading">Grupo Pythoneers</h2>   
+        <br>
+        <h3>Grupo creado en el 2023</h3>
         <p>Creado en... lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio.</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit...</p>
+        {% if titulo %}
+                    
+                               
+        {% for titular in titulo %}
+            
+               
+            <h3>{{ titular.titulo }}</h3>
+            
+                       
+            {% endfor %}
+    
+            {% else %}
+            <p>No existe titulo.</p>
+         {% endif %}
     </div>
 </div>
 {% endblock %}
