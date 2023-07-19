@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse
 from django.urls import reverse
 from django.template import loader
-from apps.post.models import Categoria, User
+from apps.post.models import Categoria, User, Comentario
 
 
 def index(request):
@@ -44,3 +44,26 @@ def about(request):
         "usuarios":usuarios,
         "correos":correos,
     })
+    
+# def crear_categoria(request):
+#     try:
+#         cat = Categoria.objects.get(pk=41)
+#         response = f"<h2>categoria nueva: {cat.titulo}</h2>"
+#     except:
+#         response = "Categoria no encontrada"
+#     return HttpResponse(response)
+
+# def mostrar_comentario(request):
+#     com = Comentario.objects.all()
+    
+#     return HttpResponse(f"<h2>nuevo comentario: {com.contenido} fecha de creación: - {com.fecha_creacion} fecha de actualizacion: {com.fecha_actualizacion}</h2>")
+
+def mostrar_comentario(request):
+    contenido = Comentario.objects.all()
+    fecha_creacion = Comentario.objects.all()
+    return render(request, "about.html",{
+        "contenido":contenido,
+        "fecha_creacion":fecha_creacion,
+    })
+
+   

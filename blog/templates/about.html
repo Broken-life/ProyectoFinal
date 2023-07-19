@@ -20,17 +20,19 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Hic ut explicabo reiciendis quae dolorem rerum. Est eaque aliquid totam illo ducimus quas cupiditate alias assumenda perspiciatis minus? Vel, porro officiis?</p>
                 <h4>Listado de nombres y correos</h4>
                 {% for usuario in usuarios %}
-                        <ol>
-                            <li>{{usuario.nombre}} </li>
-                            <li>{{usuario.email}}</li>
+                        <ol class="breadcrumb">
+                            <li>{{usuario.nombre}} -  </li>
+                            <li> {{usuario.email}}    </li>
                         </ol>
                      
-                {% endfor %}
+                    {% endfor %}
+            
                 
             </div>
             <p>😎Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt beatae minus, aliquam modi voluptatibus consequatur illo dignissimos possimus eum deleniti, maiores, quam ab nisi nostrum laudantium sint consequuntur. Impedit, molestias!</p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem optio, omnis facilis aliquam molestiae architecto adipisci voluptate consectetur minus vitae quis ullam quae, temporibus ab quisquam harum, quia tempora quaerat.</p>👀
-            
+           
+                        
         </div>
             
    

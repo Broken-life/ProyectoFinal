@@ -18,12 +18,12 @@ class Post(models.Model):
     titulo = models.CharField(max_length=200, unique=True, null=False)
     contenido = models.TextField(null=False)
     resumen = models.TextField(max_length=600, null=False)
-    fecha_creacion = models.DateTimeField(auto_now_add=True, null=False)
+    fecha_creacion = models.DateTimeField(auto_now_add=True, null=True)
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
-    imagen = models.ImageField(upload_to="media/", null=False)
+    imagen = models.ImageField(upload_to="media/", null=True)
     publicado = models.BooleanField(default=False)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
-    fecha_actualizacion = models.DateTimeField(auto_now=True)
+    fecha_actualizacion = models.DateTimeField(auto_now=True, null=True)
     permitir_comentarios = models.BooleanField(default=True)
 
     ## Del pdf complementario n2 pagina 5 y 6 sacamos lo siguiente:
@@ -54,8 +54,8 @@ class Comentario(models.Model):
     post = models.ForeignKey(Post, on_delete=models.CASCADE)
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
     contenido = models.TextField(null=False)
-    fecha_creacion = models.DateTimeField(auto_now_add=True, null=False)
-    fecha_actualizacion = models.DateTimeField(auto_now=True)
+    fecha_creacion = models.DateField(auto_now_add=True, null=False)
+    fecha_actualizacion = models.DateField(auto_now=True)
 
     ## Meta para ordenar los comentarios por fecha de creacion y actualizacion
     ## delete es para borrar todo el comentario
