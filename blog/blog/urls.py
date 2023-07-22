@@ -13,6 +13,10 @@ urlpatterns = [
     path("about/", views.about, name="acerca"),
     path('contact/',views.contacto, name="contacto"),
     path('categorias/', views.categorias, name="categorias"),
-    #path('crear-categoria/', views.crear_categoria, name="nueva categoria"),
-    # path('comentario/', views.mostrar_comentario, name="comentario"),
+    path('crear-categoria/', views.crear_categoria, name="nueva categoria"),
+    #path('detalle_publicacion/', views.detalle_publicacion, name="detalle_publicacion"),
+    path('crear_post/', views.agregar_publicacion, name='crear_post'),
+    path('editar_post/<int:id>/', views.editar_publicacion, name='editar_post'),
+    path('eliminar_post/<int:id>/', views.eliminar_publicacion, name='eliminar_post'),
+    #path('categorias/', views.mostrar_articulo, name="mostrar_articulo"),
 ]

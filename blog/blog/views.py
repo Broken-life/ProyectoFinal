@@ -1,7 +1,9 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from django.urls import reverse
 from django.template import loader
-from apps.post.models import Categoria, User, Comentario
+from apps.post.models import Categoria, User, Comentario, Post
+from .forms import CrearArticuloForm
+from django.forms import modelform_factory
 
 
 def index(request):
@@ -12,30 +14,19 @@ def home(request):
 
 
 def categorias(request):
-    titulo = Categoria.objects.all()
-    
-    template = loader.get_template('category.html')
-    context = {
-        "titulo":titulo,
-       
-    }
- 
-    return HttpResponse(template.render(context, request))
-    
-   
+    posteo = Post.objects.count()
+    publicaciones = Post.objects.all()
+    return render(request, 'category.html', {'posteo':posteo, 'publicaciones':publicaciones})
 
+  
 
 def contacto(request):
-    contacto = "3731-498412"
+    contacto = "3731-498413"
     return render(request, "contact.html",{
         "contacto":contacto,
     })
 
-# def about(request):
-#     nosotros = "esto es un grupo del informatorio formado en el año 2023"
-#     return render(request, "about.html",{
-#         "nosotros":nosotros,
-#     })
+
 
 def about(request):
     usuarios = User.objects.all()
@@ -45,25 +36,78 @@ def about(request):
         "correos":correos,
     })
     
-# def crear_categoria(request):
-#     try:
-#         cat = Categoria.objects.get(pk=41)
-#         response = f"<h2>categoria nueva: {cat.titulo}</h2>"
-#     except:
-#         response = "Categoria no encontrada"
-#     return HttpResponse(response)
+def crear_categoria(request):
+    try:
+        cat = Categoria.objects.get(pk=41)
+        response = f"<h2>categoria nueva: {cat.titulo}</h2>"
+    except:
+        response = "Categoria no encontrada"
+    return HttpResponse(response)
 
-# def mostrar_comentario(request):
-#     com = Comentario.objects.all()
+
+
+def detalle_publicacion(request):
+    publicacion = Post.objects.all()
+    return render(request, 'detalle_public.html',{'publicacion':publicacion})
+
+# agregamos una publicacion
+
+publicacionForm = modelform_factory(Post, exclude=['imagen','fecha_actualizacion'])
+
+#@login_required   
+#este código funciona    
+def agregar_publicacion(request):
+    if request.method == 'POST':
+        formPost = publicacionForm(request.POST)
+        if formPost.is_valid():
+            formPost.save()
+            return redirect('categorias')
+            
+    else:
+          formPost = publicacionForm()
+          
+         
+        
+    return render(request, 'nueva_publicacion.html',{'formPost':formPost})
+        
+# acá termina el código      
+
+#@login_required   
+#este código funciona     
+def editar_publicacion(request, id):
+    publicacion = get_object_or_404(Post, pk=id)
+    if request.method == 'POST':
+        formPost = publicacionForm(request.POST, instance=publicacion)
+        if formPost.is_valid():
+            formPost.save()
+            return redirect('categorias')
+            
+    else:
+        
+        formPost = publicacionForm(instance=publicacion)
+          
+         
+        
+    return render(request, 'editar.html',{'formPost':formPost})
+
+# acá termina el código  
+
+#@login_required   
+#este código funciona   
+def eliminar_publicacion(request, id):
+    publicacion = get_object_or_404(Post, pk=id)
+    if publicacion:
+        publicacion.delete()
+    return redirect('categorias')
+
+# acá termina el código      
+            
+  
+          
+         
+        
+
+
+ 
     
-#     return HttpResponse(f"<h2>nuevo comentario: {com.contenido} fecha de creación: - {com.fecha_creacion} fecha de actualizacion: {com.fecha_actualizacion}</h2>")
-
-def mostrar_comentario(request):
-    contenido = Comentario.objects.all()
-    fecha_creacion = Comentario.objects.all()
-    return render(request, "about.html",{
-        "contenido":contenido,
-        "fecha_creacion":fecha_creacion,
-    })
-
-   
+    

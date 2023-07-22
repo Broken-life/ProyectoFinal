@@ -1,0 +1,40 @@
+{% extends 'index.html' %} 
+{% block title %}Artículos{% endblock %}
+
+{% block background %}{% load static %}{% static 'Bootstrap/img/art-bg.jpg' %}{% endblock %}
+
+{% block headers %}
+<h1 style="color: rgba(0, 0, 0, 0.699);">Artículos</h1>
+<span class="subheading" style="color: rgba(0, 0, 0, 0.899);">los artículos se organizan en categorías</span>
+{% endblock %}
+
+{% block content %}
+<div class="row"> 
+    <div class="col-lg-3 col-md-4 offset-lg-1">
+        <img class="img-fluid avatar" src="{% static 'Bootstrap/img/grupo.png' %}" alt="imagen1" title="soy un perrito">
+    </div>
+    <div class="col-lg-7 col-md-8">
+        <h2 class="section-heading">Grupo Pythoneers</h2>   
+        <br>
+        <h3>Agregar Publicación</h3>
+                    
+    </div>
+    <div class="form-group">
+   
+       <form method="POST">
+        <table class="table-primary">
+            
+            {{formPost}}
+                
+
+        </table>
+        
+        <button type="submit" class="btn btn-primary">Enviar</button>
+        {% csrf_token %}
+       </form>
+
+    </div>
+    
+</div>
+   
+{% endblock%}

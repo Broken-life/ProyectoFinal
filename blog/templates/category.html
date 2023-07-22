@@ -17,22 +17,42 @@
         <h2 class="section-heading">Grupo Pythoneers</h2>   
         <br>
         <h3>Grupo creado en el 2023</h3>
+        
+      
         <p>Creado en... lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio.</p>
+           
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit...</p>
-        {% if titulo %}
-                    
-                               
-        {% for titular in titulo %}
-            
-               
-            <h4>{{ titular.titulo }}</h4>
-            
-                       
-            {% endfor %}
-    
-            {% else %}
-            <p>No existe titulo de la categoría.</p>
-         {% endif %}
+       <button class="btn btn-primary"><a href="{% url 'crear_post' %}">Crear nueva publicacion</a></button> 
+     
     </div>
+    <div class="col-lg-7 col-md-8">
+   
+         <div>
+            <h6>Publicaciones realizadas: {{posteo}}</h6>
+         </div>
+         <div>
+            <ul>
+               {% for publicacion in publicaciones  %}
+                <li>
+                    <h2>{{publicacion.titulo}}</h2>
+                        {{publicacion.contenido}}
+                        {{publicacion.resumen}}
+                    fecha: <b>{{publicacion.fecha_creacion}}</b>
+                    creado por: <b>{{publicacion.autor}}</b>
+                    <button class="btn btn-secondary"><a href="/editar_post/{{ publicacion.id }}">Editar</a></button>
+                    <button class="btn btn-secondary"><a href="/eliminar_post/{{ publicacion.id }}">Eliminar</a></button>
+     
+                </li>
+             
+               
+               {% endfor %}
+            </ul>
+           
+         </div>
+                 
+
+    </div>
+    
 </div>
-{% endblock %}
+   
+{% endblock%}
