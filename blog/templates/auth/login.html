@@ -1,16 +1,24 @@
-{% extends "index.html" %}
+{% extends 'base.html' %}
 {% block content %}
-<h1>Iniciar sesión</h1>
-<form method="POST">
+<div class=" d-flex align-items-center flex-column px-4 py-lg-5 rounded-4" id="login">
+    <h2>Iniciar sesión</h2>
+<form method="POST" class="container-fluid d-flex flex-column align-items-center">
     {% csrf_token %}
 
     {% for field in form %}
-    <label for="{{field.id_for_label}}">
-        {{field.html_name}}
+    <label for="{{field.id_for_label}}" class="m-3">
+        {% if field.html_name == 'username' %}
+            Ingrese su usuario:
+        {% elif field.html_name == 'password' %}
+            Ingrese su contraseña:
+        {% else %}
+            {{field.label_tag}}
+        {% endif %}
     </label>
-    <input type="{{field.html_name}}" name="{{field.html_name}}" >
+    <input type="{{field.html_name}}" name="{{field.html_name}}" class="rounded-3 form-control ">
     {% endfor %}
-    <input type="submit" value="Ingresar">
+    <input type="submit" value="Ingresar" class="mt-4 btn btn-outline-info">
 </form>
+</div>
 
 {% endblock content %}

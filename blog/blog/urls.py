@@ -6,6 +6,7 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.index, name="index"), #pagina principal
+    path("about/", views.about, name="about"), #pagina de about
     path("user/", include("apps.user.urls")), #apartado de login
     path("post/", include("apps.post.urls")), #apartado de post
 ]
