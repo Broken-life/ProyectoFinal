@@ -11,6 +11,10 @@ def registerUser(request):
     if request.method == 'POST':
         if form.is_valid():
             user = form.save()
+
+            # user = form.save(commit=False)
+            # user.instance.user=request.user
+            # user.save()
             if user is not None:
                 login(request, user)
                 return redirect('index')
@@ -26,7 +30,7 @@ def loginUser(request):
     form = AuthenticationForm(data=request.POST or None)
     if request.method == 'POST':
         if form.is_valid():
-            username = form.cleaned_data.get('username')
+            username = form.cleaned_data.get('username') #claned_data sirve para obtener los datos del formulario
             password = form.cleaned_data.get('password')
             user = authenticate(
                 username=username,
@@ -60,5 +64,4 @@ def changePassword(request):
         'form': form
     }
     return render(request, 'auth/changePass.html', context)
-
 

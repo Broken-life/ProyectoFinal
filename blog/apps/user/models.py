@@ -9,7 +9,7 @@ class UserProfile(models.Model):
     avatar = models.ImageField(upload_to='avatars/', null=False, default="media/avatars/default.png")
 
     def __str__(self):
-        return self.username
+        return self.user.username
     
     class Meta:
         verbose_name = 'Perfil'
