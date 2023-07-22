@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
+
 {% block content %}
 <div class=" d-flex align-items-center flex-column px-4 py-lg-5 rounded-4" id="login">
-    <h2>Iniciar sesión</h2>
+    <h2>Iniciar sesión</h2>  
 <form method="POST" class="container-fluid d-flex flex-column align-items-center">
     {% csrf_token %}
-
     {% for field in form %}
     <label for="{{field.id_for_label}}" class="m-3">
         {% if field.html_name == 'username' %}

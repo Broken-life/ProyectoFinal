@@ -3,7 +3,6 @@
 {% block title %}Registro{% endblock %}
 
 {% block logout %}
-<h1>Salir</h1>
 <form action="{% url 'logout' %}" method="post">
     {% csrf_token %}
     <input type="submit" value="Salir">
