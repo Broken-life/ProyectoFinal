@@ -49,7 +49,11 @@ def logoutUser(request):
     logout(request)
     print('te deslogueaste')
     return redirect('index')
-    
+
+def profile(request):
+    return render(request, 'user/profile.html')
+
+#controlar si funciona xd
 def changePassword(request):
     user = request.user
     form = PasswordChangeForm(data=request.POST or None, user=user)

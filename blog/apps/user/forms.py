@@ -10,6 +10,7 @@ class NewUserProfileForm(UserCreationForm):
         label='Contraseña', widget=forms.PasswordInput, required=True)
     password2 = forms.CharField(
         label='Confirmar Contraseña', widget=forms.PasswordInput, required=True)
+    avatar = forms.ImageField(label='Avatar', required=False)
 
     class Meta:
         model = User
