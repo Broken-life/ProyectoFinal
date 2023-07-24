@@ -123,24 +123,47 @@ def eliminar_publicacion(request, id):
 
 #     return render(request, 'post_detail.html', {'post': post, 'formComentario': formComentario})  
 
-@login_required(login_url='/categorias')
+#@login_required(login_url='/categorias')
 
+# def crear_comentario(request, post_id):
+#     if request.method == 'POST':
+#         contenido = request.POST.get('contenido')
+#         autor = request.user
+#         post = Post.objects.get(id=post_id)
+#         fecha_creacion = date.today()  # Obtiene la fecha actual
+#         comentario = Comentario(contenido=contenido, autor=autor, post=post, fecha_creacion=fecha_creacion)
+#         comentario.save()
+
+#     # Obtiene todos los comentarios asociados al post
+#     comentarios = Comentario.objects.filter(post=post)
+
+#     # Obtiene la publicación para mostrarla en la plantilla
+#     publicacion = Post.objects.get(id=post_id)
+  
+#     return render(request, 'category.html', {'publicacion': publicacion, 'comentarios': comentarios})
+
+@login_required(login_url='/categorias/')
 def crear_comentario(request, post_id):
     if request.method == 'POST':
         contenido = request.POST.get('contenido')
         autor = request.user
         post = Post.objects.get(id=post_id)
-        fecha_creacion = date.today()  # Obtiene la fecha actual
-        comentario = Comentario(contenido=contenido, autor=autor, post=post, fecha_creacion=fecha_creacion)
-        comentario.save()
+        Comentario.objects.create(contenido=contenido, autor=autor, post=post)
 
-    # Obtiene todos los comentarios asociados al post
-    comentarios = Comentario.objects.filter(post=post)
+    return redirect('categorias')
 
-    # Obtiene la publicación para mostrarla en la plantilla
-    publicacion = Post.objects.get(id=post_id)
+    
+ 
+def mostrar_comentarios(request):
+    contenido = Comentario.objects.all()
+    print(contenido)  # Agregar esta línea para ver los comentarios en la consola
+    context = {
+        "contenido": contenido,
+    }
+    return render(request, 'category.html', context)
+  
 
-    return render(request, 'category.html', {'publicacion': publicacion, 'comentarios': comentarios})
+    
 
 
     

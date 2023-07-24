@@ -102,8 +102,8 @@ class Comentario(models.Model):
     def __str__(self):
         return self.contenido
     
-    def delete(self, *args):
-        super().delete(*args)
+    # def delete(self, *args):
+    #     super().delete(*args)
         
 class User(models.Model):
     nombre = models.CharField(max_length=200)

@@ -22,29 +22,11 @@
         <p>Creado en... lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio.</p>
            
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit...</p>
-       <button class="btn btn-success"><a href="{% url 'crear_post' %}">Crear nueva publicacion</a></button> 
-     
-    </div>
-    <div class="col-lg-7 col-md-8">
-   
-         <div>
-            <h6>Publicaciones realizadas: {{posteo}}</h6>
-         </div>
-         <div>
-            <ul>
-               {% for publicacion in publicaciones  %}
-                <li>
-                    <h2>{{publicacion.titulo}}</h2>
-                        {{publicacion.contenido}}
-                        {{publicacion.resumen}}
-                    fecha: <b>{{publicacion.fecha_creacion}}</b>
-                    creado por: <b>{{publicacion.autor}}</b>
-                    <button class="btn btn-info"><a href="/editar_post/{{ publicacion.id }}">Editar</a></button>
-                    <button  class="btn btn-danger"><a href="/eliminar_post/{{ publicacion.id }}">Eliminar</a></button>
+       
                     <div>
                         <h4>Comentarios:</h4>
                         <ul>
-                            {% for comentario in contenido %}
+                            {% for comentario in comentarios %}
                                 <li>
                                     <p><strong>{{ comentario.autor }}</strong>: {{ comentario.contenido }}</p>
                                     <p>Fecha de creación: {{ comentario.fecha_creacion }}</p>
@@ -53,7 +35,6 @@
                         </ul>
                     </div>
                     
-                    
 
 
 {% if publicacion.permitir_comentarios %}
@@ -61,14 +42,11 @@
         {% csrf_token %}
         <textarea name="contenido" rows="4" cols="50" placeholder="Agrega un comentario..."></textarea>
         <input type="hidden" name="fecha_creacion" value="{{ publicacion.fecha_creacion|date:"Y-m-d" }}">
-             
         <button type="submit" class="btn btn-primary">Comentar</button>
     </form>
 {% endif %}
            
-            
      
-                </li>
                                
                {% endfor %}
             </ul>
