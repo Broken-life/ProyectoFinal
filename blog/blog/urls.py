@@ -19,4 +19,5 @@ urlpatterns = [
     path('editar_post/<int:id>/', views.editar_publicacion, name='editar_post'),
     path('eliminar_post/<int:id>/', views.eliminar_publicacion, name='eliminar_post'),
     #path('categorias/', views.mostrar_articulo, name="mostrar_articulo"),
+    path('crear_comentario/<int:post_id>/', views.crear_comentario, name='crear_comentario'),
 ]

@@ -4,7 +4,9 @@ from django.template import loader
 from apps.post.models import Categoria, User, Comentario, Post
 from .forms import CrearArticuloForm
 from django.forms import modelform_factory
-
+from django.contrib.auth.decorators import login_required
+from datetime import date
+#from .forms import publicacionForm
 
 def index(request):
     return render(request, 'index.html')
@@ -101,7 +103,47 @@ def eliminar_publicacion(request, id):
     return redirect('categorias')
 
 # acá termina el código      
-            
+
+
+
+# def post_detail(request, id):
+#     post = get_object_or_404(Post, pk=id)
+
+#     if request.method == 'POST':
+#         formComentario = ComentarioForm(request.POST)
+#         if formComentario.is_valid():
+#             comentario = formComentario.save(commit=False)
+#             comentario.post = post
+#             comentario.autor = request.user  # Assuming you're using authentication
+#             comentario.save()
+#             return redirect('post_detail', id=id)
+
+#     else:
+#         formComentario = ComentarioForm()
+
+#     return render(request, 'post_detail.html', {'post': post, 'formComentario': formComentario})  
+
+@login_required(login_url='/categorias')
+
+def crear_comentario(request, post_id):
+    if request.method == 'POST':
+        contenido = request.POST.get('contenido')
+        autor = request.user
+        post = Post.objects.get(id=post_id)
+        fecha_creacion = date.today()  # Obtiene la fecha actual
+        comentario = Comentario(contenido=contenido, autor=autor, post=post, fecha_creacion=fecha_creacion)
+        comentario.save()
+
+    # Obtiene todos los comentarios asociados al post
+    comentarios = Comentario.objects.filter(post=post)
+
+    # Obtiene la publicación para mostrarla en la plantilla
+    publicacion = Post.objects.get(id=post_id)
+
+    return render(request, 'category.html', {'publicacion': publicacion, 'comentarios': comentarios})
+
+
+    
   
           
          
