@@ -50,18 +50,16 @@ def logoutUser(request):
     print('te deslogueaste')
     return redirect('index')
     
-    
 def changePassword(request):
-    if not request.user.is_authenticated:
-        return redirect('index')
-
-    form = PasswordChangeForm(user=request.user, data=request.POST or None)
-    if request.method == 'POST':
+    user = request.user
+    form = PasswordChangeForm(data=request.POST or None, user=user)
+    if request.method == "POST":
         if form.is_valid():
-            form.save()
+            password = form.cleaned_data.get('new_password1')
+            user.set_password(password)
+            user.save()
             return redirect('index')
     context = {
         'form': form
     }
-    return render(request, 'auth/changePass.html', context)
-
+    return render(request, 'auth/changePassword.html', context)
