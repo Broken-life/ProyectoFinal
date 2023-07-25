@@ -2,9 +2,7 @@
 <header>
   <nav class="navbar navbar-expand-lg bg-dark d-flex" id="navbar">
     <div class="container-fluid">
-
       <a class="navbar-brand" href="{% url 'index' %}"><img src="{% static 'logo/pyy.png' %}" style="width: 120px;" ></a>
-
       {% comment %} boton del nav en mobile {% endcomment %}
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -24,7 +22,7 @@
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#destacados" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Categorias
+              Categorías
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">Categoría uno</a></li>
@@ -34,6 +32,13 @@
             </ul>
           </li>
         </div>
+        {% comment %} ####IMPORTANTE#### {% endcomment %}
+        {% if request.user.is_authenticated and request.user.userprofile.is_collaborator %}
+        <button>
+          crear post
+        </button>
+        
+        {% endif %}
 
         {% comment %} opciones de usuario {% endcomment %}
         <div class="" id="navbarSupportedContent">
@@ -53,17 +58,12 @@
               
               {% if request.user.is_authenticated %}
               <li class="nav-item">
-                  <a class="nav-link link-info" href="{% url 'user:profile' %}"> {{request.user.username}}</a>
+                  <a class="nav-link link-info" href="{% url 'user:profile' request.user.id %}"> {{request.user.username}}</a>
               </li>
               {% endif %}
           </ul>
         </div>
       </div>
         </ul>
-
   </nav>
- 
 </header>
-
-
-

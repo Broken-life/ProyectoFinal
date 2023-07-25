@@ -6,8 +6,9 @@ from django.db.models.signals import post_save
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE) 
-    avatar = models.ImageField(upload_to='media/avatars/', null=False, default="\media/avatars\default.jpg")
-
+    avatar = models.ImageField(upload_to='user/avatars/', default="user/default/default.jpg")
+    is_collaborator = models.BooleanField(default=False)
+    
     def __str__(self):
         return self.user.username
     

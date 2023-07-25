@@ -6,14 +6,23 @@
     {% comment %} avatar user {% endcomment %}
     <div class="px-4">
         <h2>Foto de perfil</h2>
-        <img src="{% static '{{UserProfile.avatar}}' %}" class="card-img-top rounded-circle" alt="Avatar" style="width:100px;">
+        <img src="{{user.userprofile.avatar.url}}" class="card-img-top rounded-circle" alt="Avatar" style="width:100px;">
         {% comment %} subir una imagen {% endcomment %}
         <div>
+            {% if request.user.is_authenticated and request.user == user %}
             <p class="text-sm-center">¿Cambiar foto de perfil?</p>
-            <form action="{% url 'user:profile' %}" method="POST" enctype="multipart/form-data" class="d-flex flex-column gap-3 ">
+            <form method="POST" enctype="multipart/form-data" class="d-flex flex-column gap-3 ">
                 {% csrf_token %}
-                <input type="file" name="avatar" class="small">
+                {% comment %} {{updateAvatarForm.avatar.id_for_label}}
+                {{updateAvatarForm.avatar.help_text}}
+                {{updateAvatarForm.avatar.label}} {% endcomment %}
+                <label for="{{updateAvatarForm.avatar.id_for_label}}">Subir foto</label>
+                <input id="{{updateAvatarForm.avatar.id_for_label}}" type="file" name="{{updateAvatarForm.avatar.html_name}}" class="small">
+                {{updateAvatarForm.avatar.errors}}
+                {{updateAvatarForm.avatar.non_field_errors}}
                 <input type="submit" value="Subir foto" class="btn btn-info mx-auto">
+            </form>
+            {% endif %}
         </div>
     </div>
     {% comment %} datos user {% endcomment %}
@@ -26,7 +35,7 @@
             <p class="card-text">Apellido: {{ user.last_name }}</p>
             <p class="card-text">Email: {{ user.email }}</p>
             <p class="card-text">Creación de la cuenta: {{ user.date_joined }}</p>
-            <p class="card-text">Ultima actualizacion: {{ user.last_login }}</p>
+            <p class="card-text">Última actualización: {{ user.last_login }}</p>
         </div>
     </div>
 </div>

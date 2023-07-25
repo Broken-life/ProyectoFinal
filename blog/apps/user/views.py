@@ -1,7 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from apps.user.forms import NewUserProfileForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from .models import UserProfile
+from .forms import UpdateAvatarForm
+
 
 def registerUser(request):
     if request.user.is_authenticated:
@@ -50,8 +54,20 @@ def logoutUser(request):
     print('te deslogueaste')
     return redirect('index')
 
-def profile(request):
-    return render(request, 'user/profile.html')
+def profile(request, id):
+    user = get_object_or_404(User, pk=id)
+    profile = get_object_or_404(UserProfile, pk=id)
+    form = UpdateAvatarForm(request.POST or None, request.FILES or None, instance=profile)
+    if request.method == 'POST':
+        if form.is_valid():
+            profile = form.save()
+            return redirect('user:profile', profile.id)
+    context = {
+        'user': user,
+        'updateAvatarForm': form
+    }
+    return render(request, 'user/profile.html', context)
+    
 
 #controlar si funciona xd
 def changePassword(request):

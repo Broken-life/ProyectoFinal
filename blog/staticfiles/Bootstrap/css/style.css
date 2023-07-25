@@ -5,7 +5,7 @@ root{
 }
 
 header{
-    height: 75px;
+    height: 60px;
 }
 
 #navbar{
@@ -20,7 +20,7 @@ footer{
 }
 
 #content{
-    min-height: calc(100vh - 75px - 60px);
+    min-height: calc(100vh - 60px - 60px);
 }
 
 #login{

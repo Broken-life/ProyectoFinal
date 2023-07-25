@@ -3,6 +3,7 @@
 {% block title %}Login{% endblock title %}
 
 {% block content %}
+
 <div class=" d-flex align-items-center flex-column px-4 pt-5 pb-3 rounded-4 form-control border-info w-auto" id="login">
     <h2>Iniciar sesión</h2>  
     <form method="POST" class="container-fluid d-flex flex-column align-items-center">
@@ -24,8 +25,6 @@
     </form>
     <span class="mt-4 d-flex flex-column small">¿Olvidaste la contraseña? <a href="{% url 'user:changePassword' %}" class="text-center small">Cambiar contraseña</a></span>
     <p class="mt-2 small">¿No tienes una cuenta? <a href="{% url 'user:register' %}" class="small">Registrate</a></p>
-
-    
 </div>
 
 {% endblock content %}
