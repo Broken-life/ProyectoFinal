@@ -58,7 +58,7 @@
               
               {% if request.user.is_authenticated %}
               <li class="nav-item">
-                  <a class="nav-link link-info" href="{% url 'user:profile' request.user.id %}"> {{request.user.username}}</a>
+                  <a class="nav-link link-info" href="{% url 'user:profile' request.user.id %}"> {{request.user.username|capfirst}}</a>
               </li>
               {% endif %}
           </ul>

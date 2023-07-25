@@ -44,7 +44,7 @@ class UpdateAvatarForm(forms.ModelForm):
             
             main, sub = avatar.content_type.split('/')
             if not(main == 'image' and sub in ['jpeg', 'png', 'gif']):
-                raise forms.ValidationError('Por favor, usa imganes JPEG, PNG, o GIF')
+                raise forms.ValidationError('Por favor, usa imágenes JPEG, PNG, o GIF')
             
             if len(avatar) > (1024 * 1024):
                 raise forms.ValidationError('El avatar no puede pesar mas de 20KB')

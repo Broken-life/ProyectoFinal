@@ -15,10 +15,6 @@ def registerUser(request):
     if request.method == 'POST':
         if form.is_valid():
             user = form.save()
-
-            # user = form.save(commit=False)
-            # user.instance.user=request.user
-            # user.save()
             if user is not None:
                 login(request, user)
                 return redirect('index')
