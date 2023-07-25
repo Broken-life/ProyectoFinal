@@ -3,7 +3,7 @@ from .models import Comentario, User
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Categoria
-from .forms import publicacionForm
+#from apps.post.forms import publicacionForm
 
 
 # Aca van las vistas de la app post (Basic Views - Function Based Views)
