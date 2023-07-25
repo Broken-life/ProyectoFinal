@@ -1,11 +1,52 @@
-<!DOCTYPE html>
-<html lang="es-ar">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proyecto Final</title>
-</head>
-<body>
-    <h1>Que comience el juego 😈</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="mt-5 ">
+  <h2 class="text-center text-info">Últimos Posteos </h2>
+<div class="row row-cols-3 justify-content-center ">
+    <div class="card d-flex flex-column border-info shadow col m-3" style="width: 15rem;">
+        <img src="https://img.blogs.es/iahuawei/wp-content/uploads/2019/01/IA_geopolitica.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Post Uno</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="btn btn-outline-info d-flex justify-content-center mx-3">Ver post completo</a>
+        </div>
+    </div>
+    <div class="card d-flex flex-column border-info shadow col m-3" style="width: 15rem;">
+        <img src="https://img.blogs.es/iahuawei/wp-content/uploads/2019/01/IA_geopolitica.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Post Uno</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="btn btn-outline-info d-flex justify-content-center mx-3">Ver post completo</a>
+        </div>
+    </div>
+    <div class="card d-flex flex-column border-info shadow col m-3" style="width: 15rem;">
+        <img src="https://img.blogs.es/iahuawei/wp-content/uploads/2019/01/IA_geopolitica.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Post Uno</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="btn btn-outline-info d-flex justify-content-center mx-3">Ver post completo</a>
+        </div>
+    </div>
+    <div class="card d-flex flex-column border-info shadow col m-3" style="width: 15rem;">
+        <img src="https://img.blogs.es/iahuawei/wp-content/uploads/2019/01/IA_geopolitica.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Post Uno</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="btn btn-outline-info d-flex justify-content-center mx-3">Ver post completo</a>
+        </div>
+    </div>
+</div>
+<div class="d-flex justify-content-center mt-5 accordion">
+  <button class="btn btn-outline-info" type="submit">Ver todos los posteos</button>
+</div>
+<div class="my-5">
+  <h4 class="text-center">Buscar por categoría </h4>
+  <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Ingrese la categoría" aria-label="Search">
+        <button class="btn btn-outline-info" type="submit">Buscar</button>
+      </form>
+</div>
+</div>
+{% endblock content %}
