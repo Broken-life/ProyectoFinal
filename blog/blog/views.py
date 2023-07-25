@@ -15,7 +15,7 @@ def home(request):
     return render(request, 'home.html')
 
 
-def categorias(request):
+def publicaciones(request):
     posteo = Post.objects.count()
     publicaciones = Post.objects.all()
     return render(request, 'category.html', {'posteo':posteo, 'publicaciones':publicaciones})
@@ -142,15 +142,37 @@ def eliminar_publicacion(request, id):
   
 #     return render(request, 'category.html', {'publicacion': publicacion, 'comentarios': comentarios})
 
-@login_required(login_url='/categorias/')
-def crear_comentario(request, post_id):
-    if request.method == 'POST':
-        contenido = request.POST.get('contenido')
-        autor = request.user
-        post = Post.objects.get(id=post_id)
-        Comentario.objects.create(contenido=contenido, autor=autor, post=post)
+# @login_required(login_url='/categorias/')
+# def crear_comentario(request, post_id):
+#     if request.method == 'POST':
+#         contenido = request.POST.get('contenido')
+#         autor = request.user
+#         post = Post.objects.get(id=post_id)
+#         Comentario.objects.create(contenido=contenido, autor=autor, post=post)
 
-    return redirect('categorias')
+#     return redirect('categorias')
+
+
+# @login_required(login_url='/categorias/')
+# def crear_comentario(request, post_id):
+#     post = get_object_or_404(Post, id=post_id)
+
+#     if request.method == 'POST':
+#         if request.user.is_authenticated:  # Verificar si el usuario está autenticado
+#             contenido = request.POST.get('contenido')
+#             autor = request.user
+#             Comentario.objects.create(contenido=contenido, autor=autor, post=post)
+
+#     # Obtener todos los comentarios relacionados con la publicación
+#     comentarios = Comentario.objects.all()
+
+#     # Pasar la lista de comentarios al contexto
+#     context = {
+#         'publicacion': post,
+#         'comentarios': comentarios,
+#     }
+
+#     return render(request, 'category.html', context)
 
     
  

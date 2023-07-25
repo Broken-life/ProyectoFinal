@@ -16,3 +16,13 @@ class FormularioArticulo(forms.ModelForm):
         widgets = {
             'contenido': forms.Textarea(attrs={'rows': 8}),  # Para darle un tamaño adecuado al campo de contenido
         }
+        
+class CrearArticuloForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = '__all__'
+ 
+# class ComentarioForm(forms.ModelForm):
+#     class Meta:
+#         model = Comentario
+#         field = ['contenido']        

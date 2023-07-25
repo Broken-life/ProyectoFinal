@@ -32,6 +32,7 @@
          </div>
          <div>
             <ul>
+             
                {% for publicacion in publicaciones  %}
                 <li>
                     <h2>{{publicacion.titulo}}</h2>
@@ -39,32 +40,39 @@
                         {{publicacion.resumen}}
                     fecha: <b>{{publicacion.fecha_creacion}}</b>
                     creado por: <b>{{publicacion.autor}}</b>
+                    
                     <button class="btn btn-info"><a href="/editar_post/{{ publicacion.id }}">Editar</a></button>
                     <button  class="btn btn-danger"><a href="/eliminar_post/{{ publicacion.id }}">Eliminar</a></button>
                     <div>
                         <h4>Comentarios:</h4>
                         <ul>
-                            {% for comentario in contenido %}
+                            {% if comentarios %}
+                            {% for comentario in comentarios %}
+                                {% if comentario.post == publicacion %}
                                 <li>
+
                                     <p><strong>{{ comentario.autor }}</strong>: {{ comentario.contenido }}</p>
                                     <p>Fecha de creación: {{ comentario.fecha_creacion }}</p>
                                 </li>
+                              {% endif %}
                             {% endfor %}
+                            {% else %}
+                            <h5>No existen comentarios</h5>
+
+                            {% endif %}
                         </ul>
                     </div>
                     
-                    
 
-
-{% if publicacion.permitir_comentarios %}
-    <form method="post" action="{% url 'crear_comentario' publicacion.id %}">
-        {% csrf_token %}
-        <textarea name="contenido" rows="4" cols="50" placeholder="Agrega un comentario..."></textarea>
-        <input type="hidden" name="fecha_creacion" value="{{ publicacion.fecha_creacion|date:"Y-m-d" }}">
-             
-        <button type="submit" class="btn btn-primary">Comentar</button>
-    </form>
-{% endif %}
+            {% if publicacion.permitir_comentarios %}
+                    <form method="post">
+                    {% csrf_token %}
+                        <textarea name="contenido" rows="4" cols="50" placeholder="Agrega un comentario..."></textarea>
+                        <input type="hidden" name="fecha_creacion" value="{{ publicacion.fecha_creacion|date:"Y-m-d" }}">
+                                   
+                    <button type="submit" class="btn btn-primary">Comentar</button>
+                    </form>
+            {% endif %}
            
             
      
@@ -81,3 +89,5 @@
 </div>
    
 {% endblock%}
+
+
