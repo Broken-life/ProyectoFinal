@@ -16,3 +16,4 @@ local.py
 *.sql
 db.sqlite3
 db.sqlite3-journal
+texto.txt
