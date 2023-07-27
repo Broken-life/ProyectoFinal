@@ -24,11 +24,11 @@ def ver_post(request, post_id):
     return render(request, 'post/post_detail.html', context)#crear html de post
 
 #USAR PAGINADO CON PAGINATOR
-def lista_post(request):
+def post_list(request):
     cant_posts = Post.objects.count()
     post = Post.objects.all()
     comentarios = Comentario.objects.all()
-    return render(request, 'post_list.html',{
+    return render(request, 'post/post_list.html',{
         'cant_posts':cant_posts, 
         'post':post,
         'comentarios':comentarios,
@@ -36,15 +36,17 @@ def lista_post(request):
     
 
 def crear_post(request):
-    publicacionForm = modelform_factory(Post, exclude=['imagen','fecha_actualizacion'])
+    publicacionForm = modelform_factory(Post, exclude=['fecha_actualizacion'])
     if request.method == 'POST':
         formPost = publicacionForm(request.POST)
         if formPost.is_valid():
             formPost.save()
-            return redirect ('ver_post', formPost.instance.id)         
+            return redirect ('post_list', formPost.instance.id)         
     else:
         formPost = publicacionForm()   
-    return render(request, 'post/new_post.html',{'formPost':formPost})#Crear new_post.html
+    return render(request, 'post/new_post.html',{'formPost':formPost})
+
+
 
 def editar_post(request, id):
     publicacionForm = modelform_factory(Post, exclude=['imagen','fecha_actualizacion'])
