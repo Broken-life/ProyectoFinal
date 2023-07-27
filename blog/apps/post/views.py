@@ -41,7 +41,8 @@ def crear_post(request):
         formPost = publicacionForm(request.POST)
         if formPost.is_valid():
             formPost.save()
-            return redirect ('post_list', formPost.instance.id)         
+            print(formPost.instance.id)
+            #return redirect ('ver_post', formPost.instance.id)         
     else:
         formPost = publicacionForm()   
     return render(request, 'post/new_post.html',{'formPost':formPost})

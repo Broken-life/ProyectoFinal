@@ -6,7 +6,9 @@
     
     <table>
         <form method="POST">{{formPost}}
-         <button class="btn btn-outline-info" type="submit">Crear Publicacion</button>
+         <button class="btn btn-outline-info" type="submit" >
+            <a href="/post/post_list">Crear Publicacion</a>
+        </button>
          {% csrf_token %}   
         </form>
     </table>

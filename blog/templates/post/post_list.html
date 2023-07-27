@@ -2,7 +2,19 @@
 {% block content %}
 {% load static %}
 
-{{formPost}}
- <h1>Hola</h1>
+<h1>Hola</h1>
+{% for p in post  %}
+    <h1>{{p.titulo}}</h1>
+    {% for c in comentarios  %}
+        {% if p.id == c.post_id %}
+            <h4>{{c.text}}</h4>
+        {% endif %}
+    {% endfor %}
+    <button >
+        
+      <a href="/post/ver_post/{{p.id}}"> Ver Mas</a> 
+
+    </button>
+{% endfor %}
 
 {% endblock %}
